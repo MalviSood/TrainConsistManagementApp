@@ -5,24 +5,48 @@ public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
-        // Welcome Message
+        // ================= UC1 =================
         System.out.println("========================================");
         System.out.println("=== Train Consist Management App ===");
         System.out.println("========================================\n");
 
-        // Initialize empty train consist
         List<String> trainConsist = new ArrayList<>();
 
-        // Initialization message
         System.out.println("Train initialized successfully...");
-
-        // Display initial bogie count
         System.out.println("Initial Bogie Count : " + trainConsist.size());
-
-        // Display current consist
         System.out.println("Current Train Consist : " + trainConsist);
+        System.out.println("\nSystem ready for operations...\n");
 
-        // System ready message
-        System.out.println("\nSystem ready for operations...");
+        // ================= UC2 =================
+        System.out.println("========================================");
+        System.out.println("UC2 - Add Passenger Bogies to Train");
+        System.out.println("========================================\n");
+
+        // Create passenger bogie list
+        List<String> passengerBogies = new ArrayList<>();
+
+        // Add bogies
+        passengerBogies.add("Sleeper");
+        passengerBogies.add("AC Chair");
+        passengerBogies.add("First Class");
+
+        System.out.println("After Adding Bogies:");
+        System.out.println("Passenger Bogies : " + passengerBogies + "\n");
+
+        // Remove AC Chair
+        passengerBogies.remove("AC Chair");
+
+        System.out.println("After Removing 'AC Chair':");
+        System.out.println("Passenger Bogies : " + passengerBogies + "\n");
+
+        // Check if Sleeper exists
+        System.out.println("Checking if 'Sleeper' exists:");
+        System.out.println("Contains Sleeper? : " + passengerBogies.contains("Sleeper") + "\n");
+
+        // Final list
+        System.out.println("Final Train Passenger Consist:");
+        System.out.println(passengerBogies + "\n");
+
+        System.out.println("UC2 operations completed successfully...");
     }
 }
