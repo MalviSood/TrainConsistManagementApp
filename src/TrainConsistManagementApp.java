@@ -1,31 +1,46 @@
-import java.util.regex.Pattern;
+import java.util.*;
 
 public class TrainConsistManagementApp {
+
+    static class GoodsBogie {
+        String type;
+        String cargo;
+
+        GoodsBogie(String type, String cargo) {
+            this.type = type;
+            this.cargo = cargo;
+        }
+    }
 
     public static void main(String[] args) {
 
         System.out.println("========================================");
-        System.out.println("UC11 - Validate Train ID & Cargo Codes");
+        System.out.println("UC12 - Safety Compliance Check for Goods Bogies");
         System.out.println("========================================\n");
 
-        // Sample inputs
-        String trainId = "TRN-1234";
-        String cargoCode = "PET-AB";
+        // Create goods bogie list
+        List<GoodsBogie> goodsBogies = new ArrayList<>();
 
-        // Regex patterns
-        String trainPattern = "TRN-\\d{4}";
-        String cargoPattern = "PET-[A-Z]{2}";
+        goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
+        goodsBogies.add(new GoodsBogie("Open", "Coal"));
+        goodsBogies.add(new GoodsBogie("Box", "Grain"));
 
-        // Validate using Pattern.matches()
-        boolean isTrainValid = Pattern.matches(trainPattern, trainId);
-        boolean isCargoValid = Pattern.matches(cargoPattern, cargoCode);
+        // Safety rule check using allMatch()
+        boolean isSafe = goodsBogies.stream()
+                .allMatch(b -> {
+                    if (b.type.equals("Cylindrical")) {
+                        return b.cargo.equals("Petroleum");
+                    }
+                    return true;
+                });
 
-        System.out.println("Train ID: " + trainId);
-        System.out.println("Is Train ID Valid? : " + isTrainValid + "\n");
+        System.out.println("Goods Bogies:");
+        for (GoodsBogie b : goodsBogies) {
+            System.out.println(b.type + " -> " + b.cargo);
+        }
 
-        System.out.println("Cargo Code: " + cargoCode);
-        System.out.println("Is Cargo Code Valid? : " + isCargoValid + "\n");
+        System.out.println("\nIs Train Safety Compliant? : " + isSafe);
 
-        System.out.println("UC11 validation completed...");
+        System.out.println("\nUC12 safety validation completed...");
     }
 }
