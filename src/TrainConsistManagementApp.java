@@ -4,7 +4,7 @@ public class TrainConsistManagementApp {
         String searchKey = "BG309";
 
         System.out.println("====================================");
-        System.out.println("UC18 - Linear Search for Bogie ID");
+        System.out.println("UC19 - Binary Search for Bogie ID");
         System.out.println("====================================\n");
 
         System.out.println("Available Bogie IDs:");
@@ -12,12 +12,20 @@ public class TrainConsistManagementApp {
             System.out.println(bogieIds[i]);
         }
 
+        int low = 0;
+        int high = bogieIds.length - 1;
         boolean found = false;
 
-        for (int i = 0; i < bogieIds.length; i++) {
-            if (bogieIds[i].equals(searchKey)) {
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (bogieIds[mid].compareTo(searchKey) == 0) {
                 found = true;
                 break;
+            } else if (bogieIds[mid].compareTo(searchKey) < 0) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
             }
         }
 
@@ -29,6 +37,6 @@ public class TrainConsistManagementApp {
             System.out.println("Bogie " + searchKey + " not found in train consist.");
         }
 
-        System.out.println("\nUC18 search completed...");
+        System.out.println("\nUC19 search completed...");
     }
 }
